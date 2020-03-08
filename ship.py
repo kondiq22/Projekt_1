@@ -1,10 +1,12 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship():
+class Ship(Sprite):
 
     def __init__(self, ai_settings, screen):
         """Inicjaalizacja statku klosmicznego i jego położenie
         początkowe."""
+        super(Ship, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
 
@@ -32,6 +34,10 @@ class Ship():
             self.center -= self.ai_settings.ship_speed_factor
         #Uaktualnienie objektu na podstawie wartości self.centerx.
         self.rect.centerx = self.center
+
     def blitme(self):
         """Wyświetlanie statku kosmicznego w jego aktualnym położeniu"""
         self.screen.blit(self.image, self.rect)
+    def center_ship(self):
+        """Umieszczenie statku na środku przy dolnej krawędzi ekranu."""
+        self.center = self.screen_rect.centerx
